@@ -7,6 +7,9 @@ interface Props {
 
 const { pub } = Astro.props;
 
+// Where the title should link to: the DOI if there is one, else the publisher URL
+const mainLink = pub.doi ? `https://doi.org/${pub.doi}` : pub.url;
+
 const typeLabels = {
   journal: 'Journal article',
   'book-chapter': 'Book chapter',
@@ -27,7 +30,11 @@ const publisherLine = [volumeIssue, pages, pub.publisher]
 ---
 
 <li class="pub">
-  <p class="title">{pub.title}</p>
+  <p class="title">
+    {mainLink
+      ? <a href={mainLink} target="_blank" rel="noopener noreferrer">{pub.title}</a>
+      : pub.title}
+  </p>
   <p class="authors">
     {pub.authors.map((author, i) => (
       <>
@@ -39,9 +46,11 @@ const publisherLine = [volumeIssue, pages, pub.publisher]
   <p class="venue">
     {pub.venue && <em>{pub.venue}</em>}{pub.venue && publisherLine ? ', ' : ''}{publisherLine}
   </p>
-  <p class="meta">
+   <p class="meta">
     <span class="badge">{typeLabels[pub.type]}</span>
     {pub.doi && <a href={`https://doi.org/${pub.doi}`} target="_blank" rel="noopener noreferrer">DOI</a>}
+    {pub.arxiv && <a href={`https://arxiv.org/abs/${pub.arxiv}`} target="_blank" rel="noopener noreferrer">arXiv</a>}
+    {!pub.doi && pub.url && <a href={pub.url} target="_blank" rel="noopener noreferrer">Publisher page</a>}
     {pub.pdf && <a href={pub.pdf} target="_blank" rel="noopener noreferrer">PDF</a>}
     {pub.code && <a href={pub.code} target="_blank" rel="noopener noreferrer">Code</a>}
   </p>
@@ -78,5 +87,14 @@ const publisherLine = [volumeIssue, pages, pub.publisher]
     border: 1px solid var(--border);
     border-radius: 999px;
     color: var(--muted);
+  }
+
+    .title a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .title a:hover {
+    color: var(--accent);
+    text-decoration: underline;
   }
 </style>

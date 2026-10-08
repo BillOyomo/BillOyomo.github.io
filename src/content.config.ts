@@ -16,6 +16,8 @@ const publications = defineCollection({
     issue: z.string().optional(),
     pages: z.string().optional(),
     doi: z.string().optional(),        // just the DOI, e.g. "10.1021/..."
+    arxiv: z.string().optional(),                  // just the ID, e.g. "2411.16649"
+    url: z.string().url().optional(),              // publisher page when there is no DOI
     pdf: z.string().optional(),        // link to a free copy, if allowed
     code: z.string().optional(),       // link to code/data, e.g. GitHub
   }),
