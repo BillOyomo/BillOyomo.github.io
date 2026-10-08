@@ -3,6 +3,7 @@ import ThemeToggle from './ThemeToggle.astro';
 const links = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
+  { href: '/background', label: 'Background' },
 ];
 
 // Current page path, without a trailing slash (but "/" stays "/")
@@ -21,7 +22,7 @@ const current = Astro.url.pathname.replace(/\/$/, '') || '/';
           {link.label}
         </a>
       ))}
-      <ThemeToggle />
+      
     </nav>
   </div>
 </header>
