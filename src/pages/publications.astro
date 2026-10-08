@@ -1,0 +1,49 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Publication from '../components/Publication.astro';
+import { site } from '../data/site';
+
+const all = await getCollection('publications');
+
+// Newest first
+const sorted = all.sort((a, b) => b.data.year - a.data.year);
+
+// Unique years, newest first: [2026, 2025, 2023]
+const years = [...new Set(sorted.map((p) => p.data.year))];
+
+const scholar = site.links.find((l) => l.label === 'Google Scholar')?.href;
+---
+
+<BaseLayout
+  title="Publications"
+  description="Publications by Bill Clintone Oyomo on first-principles materials modelling."
+>
+  <h1>Publications</h1>
+
+  {years.map((year) => (
+    <section>
+      <h2>{year}</h2>
+      <ul class="list">
+        {sorted
+          .filter((p) => p.data.year === year)
+          .map((p) => <Publication pub={p.data} />)}
+      </ul>
+    </section>
+  ))}
+
+  {scholar && (
+    <p>
+      See also my <a href={scholar} target="_blank" rel="noopener noreferrer">Google Scholar profile</a> {' '}
+      for citation counts.
+    </p>
+  )}
+</BaseLayout>
+
+<style>
+  .list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+</style>
