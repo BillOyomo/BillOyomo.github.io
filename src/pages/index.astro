@@ -1,11 +1,59 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import profile from '../assets/profile.jpg';
 ---
 
 <BaseLayout title="Home">
-  <h1>Bill Clintone Oyomo</h1>
-  <p>
-    PhD student at Nanyang Technological University, Singapore. I use
-    first-principles (DFT) simulations to study the properties of materials.
-  </p>
+  <section class="hero">
+    <Image
+      class="photo"
+      src={profile}
+      alt="Portrait of Bill Clintone Oyomo"
+      width={400}
+      height={400}
+      loading="eager"
+    />
+    <div>
+      <h1>Bill Clintone Oyomo</h1>
+      <p class="role">
+        PhD Student, Nanyang Technological University, Singapore
+      </p>
+      <p>
+        I use first-principles simulations, mainly density functional theory
+        (DFT), to understand and predict the properties of materials.
+      </p>
+      <SocialLinks />
+    </div>
+  </section>
+
+  <h2>Research interests</h2>
+  <ul>
+    <li>First-principles (DFT) modelling of materials properties.</li>
+    <li>2D Magnetic materials.</li>
+    <li>Thermoelastic and mechanical properties of MAX phases.</li>
+  </ul>
 </BaseLayout>
+
+<style>
+  .hero {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem 2rem;
+  }
+  .photo {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .hero > div {
+    flex: 1 1 320px;
+  }
+  .role {
+    margin: 0.25rem 0 1rem;
+    color: var(--muted);
+  }
+</style>
