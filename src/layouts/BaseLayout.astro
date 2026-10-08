@@ -24,7 +24,17 @@ const fullTitle = title === 'Home' ? 'Bill Oyomo' : `${title} | Bill Oyomo`;
     <meta name="description" content={description} />
     <link rel="icon" href="/favicon.svg" />
     <title>{fullTitle}</title>
-  </head>
+ 
+    <script is:inline>
+      try {
+        document.documentElement.dataset.theme =
+          localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';
+      } catch (e) {
+        document.documentElement.dataset.theme = 'light';
+      }
+    </script>
+
+   </head>
   <body>
     <Header />
     <main class="container">

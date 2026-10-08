@@ -1,0 +1,57 @@
+<button
+  id="theme-toggle"
+  type="button"
+  aria-label="Toggle light and dark mode"
+  title="Toggle light/dark mode"
+>
+  <svg class="sun" viewBox="0 0 24 24" width="20" height="20" fill="none"
+       stroke="currentColor" stroke-width="2" stroke-linecap="round"
+       stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="4" />
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+  </svg>
+  <svg class="moon" viewBox="0 0 24 24" width="20" height="20" fill="none"
+       stroke="currentColor" stroke-width="2" stroke-linecap="round"
+       stroke-linejoin="round" aria-hidden="true">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+  </svg>
+</button>
+
+<script>
+  const button = document.getElementById('theme-toggle');
+
+  button?.addEventListener('click', () => {
+    const root = document.documentElement;
+    const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try {
+      localStorage.setItem('theme', next);
+    } catch (e) {
+      // storage unavailable: the toggle still works for this visit
+    }
+  });
+</script>
+
+<style>
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.35rem;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--muted);
+    cursor: pointer;
+  }
+  button:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  /* Light mode shows the moon (click to go dark); dark mode shows the sun */
+  .sun { display: none; }
+  .moon { display: block; }
+  :global(:root[data-theme="dark"]) .sun { display: block; }
+  :global(:root[data-theme="dark"]) .moon { display: none; }
+</style>

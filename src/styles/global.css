@@ -1,4 +1,5 @@
 :root {
+  color-scheme: light;
   --bg: #ffffff;
   --text: #1f2933;
   --muted: #5f6c7b;
@@ -7,14 +8,13 @@
   --max-width: 760px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #111418;
-    --text: #e6e9ee;
-    --muted: #9aa5b1;
-    --accent: #7aa2ff;
-    --border: #2a303a;
-  }
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #111418;
+  --text: #e6e9ee;
+  --muted: #9aa5b1;
+  --accent: #7aa2ff;
+  --border: #2a303a;
 }
 
 *,
