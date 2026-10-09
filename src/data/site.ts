@@ -24,7 +24,7 @@ export const site = {
 // To change one, see "Updating contact details later" below.
 export const contact = {
   emails: [
-    { label: 'NTU', encoded: 'YmlsbGNsaW5AZS5udHUuZWR1LnNn' },
+    { label: 'NTU', encoded: 'YmlsbGNsaW4wMDFAZS5udHUuZWR1LnNn' },
     { label: 'Personal', encoded: 'YmlsbGNsaW50b25lNDRAZ21haWwuY29t' },
   ],
   phones: [
