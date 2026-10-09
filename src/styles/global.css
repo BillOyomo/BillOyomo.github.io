@@ -6,6 +6,13 @@
   --accent: #1d4ed8;
   --border: #e4e7eb;
   --max-width: 760px;
+  
+    /* Header and footer ("chrome") colours: same in light and dark mode */
+  --chrome-bg: #14045d;
+  --chrome-text: #f5f6fa;
+  --chrome-muted: #b8c7e0;
+  --chrome-accent: #8ec5ff;
+  --chrome-border: rgba(255, 255, 255, 0.2);
 }
 
 :root[data-theme="dark"] {
@@ -66,4 +73,15 @@ a {
 img {
   max-width: 100%;
   height: auto;
+}
+
+/* Focus styles for keyboard navigation */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Paragraph max Keep paragraph lines readable on wide screens*/
+main p {
+  max-width: 90ch;
 }

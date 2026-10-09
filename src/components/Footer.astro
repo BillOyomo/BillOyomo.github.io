@@ -1,20 +1,26 @@
 ---
-import SocialLinks from './SocialLinks.astro';
+// import SocialLinks from './SocialLinks.astro';
 const year = new Date().getFullYear();
 ---
 
 <footer>
   <div class="container">
-    <SocialLinks />
+    <!-- <SocialLinks /> -->
     <p>© {year} Bill Clintone Oyomo</p>
   </div>
 </footer>
 
 <style>
   footer {
-    border-top: 2px solid var(--border);
-    color: var(--muted);
+    background: var(--chrome-bg);
+    color: var(--chrome-muted);
+    --muted: var(--chrome-muted);
+    --accent: var(--chrome-accent);
+    --border: var(--chrome-border);
     font-size: 0.9rem;
     padding: 1.5rem 0;
+  }
+  p {
+    margin: 1rem 0 0;
   }
 </style>

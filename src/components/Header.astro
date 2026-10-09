@@ -30,8 +30,16 @@ const current = Astro.url.pathname.replace(/\/$/, '') || '/';
 </header>
 
 <style>
-  header {
-    border-bottom: 1px solid var(--border);
+    header {
+    background: var(--chrome-bg);
+    --text: var(--chrome-text);
+    --muted: var(--chrome-muted);
+    --accent: var(--chrome-accent);
+    --border: var(--chrome-border);
+    
+    position: sticky; 
+    top: 0;
+    z-index: 10;
   }
   .bar {
     display: flex;
