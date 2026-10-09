@@ -1,0 +1,75 @@
+---
+import { contact } from '../data/site';
+---
+
+<ul class="contact">
+  {contact.emails.map((e) => (
+    <li>
+      <span class="label">{e.label} email</span>
+      <a class="reveal-email" data-encoded={e.encoded} href="#">
+        Enable JavaScript to view
+      </a>
+    </li>
+  ))}
+  {contact.phones.map((p) => (
+    <li>
+      <span class="label">{p.label} phone</span>
+      <button type="button" class="reveal-phone" data-encoded={p.encoded}>
+        Show number
+      </button>
+    </li>
+  ))}
+</ul>
+
+<script>
+  // Emails: decode as soon as the page loads
+  document.querySelectorAll<HTMLAnchorElement>('.reveal-email').forEach((a) => {
+    const value = atob(a.dataset.encoded ?? '');
+    a.textContent = value;
+    a.href = `mailto:${value}`;
+  });
+
+  // Phones: decode only when the visitor clicks
+  document.querySelectorAll<HTMLButtonElement>('.reveal-phone').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const value = atob(btn.dataset.encoded ?? '');
+      const link = document.createElement('a');
+      link.textContent = value;
+      link.href = `tel:${value}`;
+      btn.replaceWith(link);
+    });
+  });
+</script>
+
+<style>
+  .contact {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem 1rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .label {
+    min-width: 9rem;
+    color: var(--muted);
+  }
+  button {
+    padding: 0.2rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: none;
+    color: var(--accent);
+    font: inherit;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  button:hover {
+    border-color: var(--accent);
+  }
+</style>

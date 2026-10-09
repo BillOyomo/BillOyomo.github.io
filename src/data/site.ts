@@ -19,3 +19,16 @@ export const site = {
     },
   ],
 };
+
+// Base64-encoded so the raw details aren't sitting in the page HTML.
+// To change one, see "Updating contact details later" below.
+export const contact = {
+  emails: [
+    { label: 'NTU', encoded: 'YmlsbGNsaW5AZS5udHUuZWR1LnNn' },
+    { label: 'Personal', encoded: 'YmlsbGNsaW50b25lNDRAZ21haWwuY29t' },
+  ],
+  phones: [
+    { label: 'Singapore', encoded: 'KzY1OTI3MDU1NDk=' },
+    { label: 'Kenya', encoded: 'KzI1NDczOTk0NDAyOA==' },
+  ],
+};
